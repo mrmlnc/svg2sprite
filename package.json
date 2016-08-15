@@ -1,0 +1,44 @@
+{
+  "name": "svg2sprite",
+  "version": "1.0.0",
+  "description": "A very simple module to generate SVG sprites.",
+  "license": "MIT",
+  "repository": "mrmlnc/svg2sprite",
+  "author": {
+    "name": "Denis Malinochkin",
+    "url": "canonium.com"
+  },
+  "engines": {
+    "node": ">=4.0.0"
+  },
+  "scripts": {
+    "pretest": "rimraf out && tslint src/**/*.ts && tsc",
+    "test": "mocha --recursive out",
+    "prepublish": "npm run test",
+    "start": "rimraf out && tsc --watch"
+  },
+  "main": "out/sprite.js",
+  "typings": "out/sprite.d.ts",
+  "files": [
+    "out/sprite.js",
+    "out/sprite.d.ts",
+    "out/lib/attributes.js",
+    "out/lib/clean.js"
+  ],
+  "keywords": [
+    "svg",
+    "symbol",
+    "sprite",
+    "spritesheet",
+    "generator",
+    "icon",
+    "icons"
+  ],
+  "dependencies": {},
+  "devDependencies": {
+    "mocha": "^3.0.0",
+    "rimraf": "^2.5.0",
+    "tslint": "^3.14.0",
+    "typescript": "^1.8.0"
+  }
+}
