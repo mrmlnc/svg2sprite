@@ -85,7 +85,7 @@ function makeContent(content: string, parent: string, filters: IExclude): string
 /**
  * Creating a SVG string from the tree
  */
-function stringify(tree: parser.INode, options: IOptions, filters: IExclude, parent: string, isNestedSvg = false): string {
+function stringify(tree: parser.INode, options: IOptions, filters: IExclude, parent: string, isNestedSvg): string {
 	let svg = '';
 
 	if (tree.children && tree.children.length !== 0) {
@@ -120,5 +120,5 @@ export default function stringifier(content: string, options: IOptions): string 
 	const ast = parser.parse(content);
 	const filters = makeExcludeFilter(options);
 
-	return stringify(ast, options, filters, null);
+	return stringify(ast, options, filters, null, false);
 }
