@@ -122,7 +122,9 @@ If you specify a string, then use the strict comparison. You can also specify th
 {
   clean: {
     stripAttrs: [
+      // true for: style=".."
       'style',
+      // true for: stoke="..", stoke-width="..", etc.
       { pattern: 'stroke', strict: false }
     ]
   }
