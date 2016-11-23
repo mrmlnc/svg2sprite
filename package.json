@@ -41,7 +41,7 @@
     "lint": "tslint src/**/*.ts",
     "compile": "tsc",
     "test": "mocha out/**/*.spec.js",
-    "build": "npm run clean && npm run lint&& npm run compile && npm run test ",
+    "build": "npm run clean && npm run lint && npm run compile && npm run test",
     "watch": "npm run clean && npm run lint && npm run compile -- --watch"
   }
 }
