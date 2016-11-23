@@ -60,75 +60,93 @@ Returns the builded sprite.
 
 ## Supported options
 
-**transform**
-
-  * Type: `Function`
-  * Default: `undefined`
-
-Allows to transform the provided file before it is processed. For example, to optimize it using SVGO.
-
-```js
-{
-  transform: (content) => content.toUpperCase();
-}
-```
-
-**rootAttributes**
+#### rootAttributes
 
   * Type: `Object`
   * Default: `{}`
 
 The attributes that will be added to the root `svg` tag.
 
-**inline**
+#### inline
 
   * Type: `Boolean`
   * Default: `false`
 
 If you want to embed the sprite into your HTML source, you will want to set this to `true` in order to prevent the creation of SVG namespace declarations and to set some other attributes for effectively hiding the library sprite.
 
-**iconAttributes**
+#### iconAttributes
 
   * Type: `Object`
   * Default: `{}`
 
 The attributes of each icon. Current attribute values will be overwritten.
 
-**iconPrefix**
+#### iconPrefix
 
   * Type: `String`
   * Default: `''`
 
 The name prefix for each icon.
 
-**iconSuffix**
+#### iconSuffix
 
   * Type: `String`
   * Default: `''`
 
 The name suffix for each icon.
 
-**clean**
+#### clean.stripEmptyTags
 
-Clean options.
+  * Type: `Boolean`
+  * Default: `true`
+
+Removes empty tags such as `<defs></defs>` or `<g></g>`.
+
+#### clean.stripTags
+
+  * Type: `Array`
+  * Default: `['title', 'desc']`
+
+Removes tags, that are listed in this list.
+
+#### clean.stripAttrs
+
+  * Type: `Array`
+  * Default: `[]`
+
+Removes attributes, that are listed in this list.
+
+If you specify a string, then use the strict comparison. You can also specify the object and the type of comparison.
 
 ```js
 {
-  stripComment: false,         // Strip <!-- * -->
-  stripEmptyDefinition: false, // Strip empty <defs></defs>
-  stripEmptyGroup: false,      // Strip empty <g></g>
-  stripTitle: false,           // Strip <title>*</title>
-  stripDescription: false,     // Strip <desc>*</desc>
-  stripExtraAttributes: false, // Strip Sketch and xmlns:* attributes
-  stripViewBox: false,         // Strip viewBox attributes
-  stripStyles: false,          // `stripFill` option and strip all `style` attributes
-  stripFill: false             // Strip `fill` attribute (fill="") or fill in the `style` attribute (style="fill:*;")
+  clean: {
+    stripAttrs: [
+      'style',
+      { pattern: 'stroke', strict: false }
+    ]
+  }
 }
 ```
+
+#### clean.stripExtraAttrs
+
+  * Type: `Boolean`
+  * Default: `true`
+
+Removes Sketch and xmlns:* attributes.
+
+#### clean.stripStyles
+
+  * Type: `Boolean|Array`
+  * Default: `true`
+
+Removes `style` attributes from SVG definitions, or a list of the properties that will be removed from `style` tag and atrribute.
 
 ## Related
 
   * [svg2sprite-cli](https://github.com/mrmlnc/svg2sprite-cli) - CLI interface for this module.
+  * [yellfy-svg-sprite](https://github.com/mrmlnc/yellfy-svg-sprite) - svg2sprite wrapper for easy integration into the development process.
 
 ## Changelog
 
