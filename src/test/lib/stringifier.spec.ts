@@ -174,4 +174,13 @@ describe('Stringifier', () => {
 		assert.ok(result.indexOf('me="hello"') !== -1);
 	});
 
+	/**
+	 * Common
+	 */
+
+	it('Should not change nested svg tag to symbol', () => {
+		assert.equal(stringifier('<svg><svg>test</svg></svg>', defaultOptions), '<symbol><svg>test</svg></symbol>');
+		assert.equal(stringifier('<svg><svg></svg></svg>', defaultOptions), '<symbol></symbol>');
+	});
+
 });

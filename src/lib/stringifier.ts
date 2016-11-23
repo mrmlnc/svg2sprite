@@ -85,13 +85,14 @@ function makeContent(content: string, parent: string, filters: IExclude): string
 /**
  * Creating a SVG string from the tree
  */
-function stringify(tree: parser.INode, options: IOptions, filters: IExclude, parent: string): string {
+function stringify(tree: parser.INode, options: IOptions, filters: IExclude, parent: string, isNestedSvg = false): string {
 	let svg = '';
 
 	if (tree.children && tree.children.length !== 0) {
 		let name = tree.name;
-		if (name === 'svg') {
+		if (name === 'svg' && !isNestedSvg) {
 			name = 'symbol';
+			isNestedSvg = true;
 		}
 
 		const attrs = makeAttributes(tree, options.iconAttributes, filters);
@@ -101,7 +102,7 @@ function stringify(tree: parser.INode, options: IOptions, filters: IExclude, par
 			svg += `<${name}${attrs}>`;
 
 			for (let i = 0; i < tree.children.length; i++) {
-				svg += stringify(tree.children[i], options, filters, name);
+				svg += stringify(tree.children[i], options, filters, name, isNestedSvg);
 			}
 
 			svg += `</${name}>`;
